@@ -8,27 +8,30 @@
   <style>
     :root {
       --orange: #f4845f;
-      --red: #f0615c;
+      --red: #C0392B;
+      --red-bright: #f0615c;
       --peach: #f9b49a;
-      --pink: #ffacec;
-      --blush: #fde4f0;
+      --pink: #e8799a;
+      --pink-light: #fde4f0;
+      --blush: #fce8ec;
       --cream: #fff8f3;
       --white: #ffffff;
       --text: #2a1a14;
       --muted: #7a4a3a;
       --border: #f5cfc0;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--text); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-    /* HEADER */
+    /* ── HEADER ── */
     header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--white); border-bottom: 1.5px solid var(--border);
+      background: var(--white); border-bottom: 2px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 44px; height: 68px;
-      box-shadow: 0 2px 18px rgba(244,132,95,0.07);
+      box-shadow: 0 2px 18px rgba(244,132,95,0.08);
     }
     .header-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .logo-img { width: 36px; height: 36px; object-fit: contain; }
@@ -38,22 +41,35 @@
     .back-link:hover { color: var(--orange); }
     .back-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
 
-    /* MARQUEE */
-    .marquee-wrap { margin-top: 68px; background: var(--orange); overflow: hidden; white-space: nowrap; padding: 11px 0; }
-    .marquee-track { display: inline-block; animation: marquee 26s linear infinite; }
-    .marquee-track span { font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--white); padding: 0 28px; }
-    .marquee-track span.dot { color: rgba(255,255,255,0.4); padding: 0; }
+    /* ── MARQUEE ── */
+    .marquee-wrap { margin-top: 68px; background: var(--red); overflow: hidden; white-space: nowrap; padding: 10px 0; }
+    .marquee-track { display: inline-block; animation: marquee 28s linear infinite; }
+    .marquee-track span { font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--white); padding: 0 26px; }
+    .marquee-track span.dot { color: rgba(255,255,255,0.35); padding: 0; }
     @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* FORM HERO */
+    /* ── FORM HERO ── */
     .form-hero {
-      background: linear-gradient(135deg, var(--cream) 0%, var(--blush) 70%);
+      background: linear-gradient(140deg, var(--cream) 0%, var(--blush) 55%, var(--pink-light) 100%);
       padding: 64px 44px 52px; border-bottom: 1.5px solid var(--border);
+      position: relative; overflow: hidden;
     }
-    .form-hero-inner { max-width: 760px; margin: 0 auto; }
+    .form-hero::before {
+      content: ''; position: absolute; top: -60px; right: -60px;
+      width: 260px; height: 260px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,57,43,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .form-hero::after {
+      content: ''; position: absolute; bottom: -40px; left: 30%;
+      width: 180px; height: 180px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,121,154,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .form-hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
     .type-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--orange); color: var(--white);
+      background: var(--red); color: var(--white);
       font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
       padding: 7px 16px; margin-bottom: 22px;
     }
@@ -62,141 +78,181 @@
     .form-hero h1 em { font-style: italic; color: var(--orange); }
     .form-hero p { font-size: 14px; color: var(--muted); line-height: 1.78; max-width: 560px; font-weight: 400; }
 
-    /* FORM LAYOUT */
+    /* ── FORM LAYOUT ── */
     .form-wrap { max-width: 760px; margin: 0 auto; padding: 64px 44px 80px; }
-
-    /* SECTIONS */
     .form-section-block { margin-bottom: 52px; }
     .form-section-block:last-child { margin-bottom: 0; }
-    .section-label {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--orange); margin-bottom: 6px;
-    }
-    .section-heading {
-      font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text);
-      margin-bottom: 6px; line-height: 1.2;
-    }
+    .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+    .section-heading { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 6px; line-height: 1.2; }
     .section-desc { font-size: 12.5px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; font-weight: 400; }
+    .form-divider { width: 100%; height: 1.5px; background: linear-gradient(90deg, var(--border), var(--pink-light), var(--border)); margin-bottom: 52px; }
 
-    .form-divider { width: 100%; height: 1.5px; background: var(--border); margin-bottom: 52px; }
-
-    /* GRID */
+    /* ── GRID ── */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .grid-1 { display: grid; grid-template-columns: 1fr; gap: 18px; }
     .full { grid-column: 1 / -1; }
 
-    /* FIELDS */
+    /* ── FIELDS ── */
     .field { display: flex; flex-direction: column; gap: 7px; }
-    label {
-      font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--text);
-    }
-    label span.req { color: var(--orange); margin-left: 2px; }
+    label { font-size: 9.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text); }
+    label span.req { color: var(--red); margin-left: 2px; }
     .field-hint { font-size: 11px; color: var(--muted); font-weight: 400; margin-top: -4px; font-style: italic; }
 
     input, select, textarea {
       font-family: 'Montserrat', sans-serif; font-size: 13.5px; font-weight: 400;
       color: var(--text); background: var(--white); border: 1.5px solid var(--border);
       padding: 13px 15px; outline: none;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       -webkit-appearance: none; border-radius: 0; width: 100%;
     }
     input::placeholder, textarea::placeholder { color: #c4a09a; font-weight: 300; }
-    input:focus, select:focus, textarea:focus { border-color: var(--orange); background: var(--white); }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(244,132,95,0.1);
+    }
     textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
     select {
       cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23f4845f' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C0392B' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
       background-repeat: no-repeat; background-position: right 14px center;
       padding-right: 36px; background-color: var(--white);
     }
 
-    /* RADIO GROUP */
+    /* ── RADIO GROUP ── */
     .radio-group { display: flex; flex-direction: column; gap: 10px; }
     .radio-option { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; padding: 13px 16px; border: 1.5px solid var(--border); background: var(--white); transition: border-color 0.2s, background 0.2s; }
     .radio-option:hover { border-color: var(--peach); }
-    .radio-option input[type="radio"] { margin-top: 2px; accent-color: var(--orange); flex-shrink: 0; width: 16px; height: 16px; cursor: pointer; }
+    .radio-option input[type="radio"] { margin-top: 2px; accent-color: var(--red); flex-shrink: 0; width: 16px; height: 16px; cursor: pointer; }
     .radio-option-text { display: flex; flex-direction: column; gap: 2px; }
     .radio-option-label { font-size: 13px; font-weight: 600; color: var(--text); }
     .radio-option-desc { font-size: 11.5px; color: var(--muted); font-weight: 300; line-height: 1.5; }
-    .radio-option.selected { border-color: var(--orange); background: #fff5f0; }
+    .radio-option.selected { border-color: var(--red); background: #fdf0ef; }
 
-    /* CHECKBOX GROUP */
+    /* ── CHECKBOX ── */
     .checkbox-grid { display: flex; flex-wrap: wrap; gap: 9px; }
     .checkbox-pill { display: flex; align-items: center; gap: 7px; cursor: pointer; padding: 8px 14px; border: 1.5px solid var(--border); background: var(--white); transition: border-color 0.2s, background 0.2s; }
-    .checkbox-pill:hover { border-color: var(--peach); }
-    .checkbox-pill input[type="checkbox"] { accent-color: var(--orange); width: 14px; height: 14px; cursor: pointer; }
+    .checkbox-pill:hover { border-color: var(--pink); }
+    .checkbox-pill input[type="checkbox"] { accent-color: var(--red); width: 14px; height: 14px; cursor: pointer; }
     .checkbox-pill span { font-size: 12px; font-weight: 500; color: var(--muted); }
-    .checkbox-pill:has(input:checked) { border-color: var(--orange); background: #fff5f0; }
+    .checkbox-pill:has(input:checked) { border-color: var(--pink); background: #fdf0f5; }
 
-    /* YES/NO */
+    /* ── YES/NO ── */
     .yesno-group { display: flex; gap: 12px; }
     .yesno-btn { flex: 1; padding: 12px; border: 1.5px solid var(--border); background: var(--white); font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; color: var(--muted); }
     .yesno-btn:hover { border-color: var(--peach); }
-    .yesno-btn.active { border-color: var(--orange); background: #fff5f0; color: var(--orange); }
+    .yesno-btn.active { border-color: var(--red); background: #fdf0ef; color: var(--red); }
 
-    /* CONDITIONAL */
+    /* ── CONDITIONAL ── */
     .conditional { display: none; margin-top: 14px; }
     .conditional.show { display: block; }
 
-    /* CHAR COUNT */
+    /* ── CHAR COUNT ── */
     .char-counter { font-size: 10.5px; color: var(--muted); text-align: right; margin-top: 5px; font-weight: 400; }
 
-    /* SUBMIT */
+    /* ── SUBMIT ── */
     .submit-section { margin-top: 52px; padding-top: 40px; border-top: 1.5px solid var(--border); }
     .submit-note-box {
       background: linear-gradient(120deg, var(--blush), var(--cream));
-      border: 1.5px solid var(--border); padding: 22px 24px; margin-bottom: 28px;
+      border-left: 3px solid var(--red); padding: 22px 24px; margin-bottom: 28px;
     }
     .submit-note-box p { font-size: 13px; color: var(--muted); line-height: 1.75; font-weight: 400; }
     .submit-note-box p strong { color: var(--text); font-weight: 600; }
     .submit-row { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
     .btn-submit {
-      background: var(--orange); color: var(--white); border: none;
+      background: var(--red); color: var(--white); border: none;
       padding: 18px 52px; font-family: 'Montserrat', sans-serif;
       font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
       cursor: pointer; transition: background 0.2s, transform 0.15s;
+      position: relative; overflow: hidden;
     }
-    .btn-submit:hover { background: var(--red); transform: translateY(-2px); }
+    .btn-submit::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(244,132,95,0.2), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .btn-submit:hover { background: #a93226; transform: translateY(-2px); }
+    .btn-submit:hover::after { opacity: 1; }
     .submit-small { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.65; }
 
-    /* SUCCESS */
-    .success-state {
-      display: none; text-align: center; padding: 64px 24px;
-      background: linear-gradient(135deg, var(--blush), var(--cream));
-      border: 1.5px solid var(--border); margin-top: 40px;
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text);
+      padding: 56px 44px 40px;
+      border-top: 3px solid var(--red);
     }
-    .success-state h2 { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--orange); margin-bottom: 14px; }
-    .success-state p { font-size: 14px; color: var(--muted); line-height: 1.8; max-width: 480px; margin: 0 auto; }
+    .footer-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand-mark {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    }
+    .footer-brand-mark img {
+      width: 38px; height: 38px; object-fit: contain;
+      filter: brightness(0) invert(1); opacity: 0.9;
+    }
+    .footer-brand-name-text {
+      font-family: 'Playfair Display', serif; font-size: 16px;
+      color: rgba(255,255,255,0.95); letter-spacing: 0.01em;
+    }
+    .footer-brand-sub {
+      display: block; font-family: 'Montserrat', sans-serif;
+      font-size: 7px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--orange); margin-top: 3px;
+    }
+    .footer-tagline {
+      font-size: 13px; color: rgba(255,255,255,0.55);
+      line-height: 1.8; margin-bottom: 20px; font-weight: 300;
+    }
+    .footer-tagline em { color: var(--pink); font-style: italic; }
+    .footer-social-row { display: flex; gap: 9px; }
+    .footer-social-icon {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); text-decoration: none;
+      transition: all 0.2s;
+    }
+    .footer-social-icon:hover { border-color: var(--orange); color: var(--orange); background: rgba(244,132,95,0.08); }
+    .footer-social-icon svg { width: 14px; height: 14px; fill: currentColor; }
 
-    /* FOOTER */
-    footer { background: #8B0000; padding: 60px 44px 44px; }
-    .footer-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 52px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.15); }
-    .footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
-    .footer-brand-logo img { width: 42px; height: 42px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.85; }
-    .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--white); }
-    .footer-brand-desc { font-size: 13.5px; color: rgba(255,255,255,0.78); line-height: 1.78; margin-bottom: 16px; }
-    .footer-read-more { font-size: 12.5px; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 3px; }
-    .footer-read-more:hover { color: var(--white); }
-    .footer-col-title { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: var(--white); margin-bottom: 22px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
-    .footer-col ul li a { font-size: 13.5px; color: rgba(255,255,255,0.8); text-decoration: underline; text-underline-offset: 3px; }
+    .footer-col-title {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.3em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul li a {
+      font-size: 13px; color: rgba(255,255,255,0.65);
+      text-decoration: none; transition: color 0.2s;
+      font-weight: 400; letter-spacing: 0.02em;
+    }
     .footer-col ul li a:hover { color: var(--white); }
-    .footer-col ul li.no-link { font-size: 13.5px; color: rgba(255,255,255,0.55); }
-    .footer-social-row { display: flex; gap: 10px; margin-top: 26px; }
-    .footer-social-icon { width: 38px; height: 38px; border: 1.5px solid rgba(255,255,255,0.45); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.8); text-decoration: none; transition: background 0.2s, border-color 0.2s, color 0.2s; }
-    .footer-social-icon:hover { background: rgba(255,255,255,0.12); border-color: white; color: white; }
-    .footer-social-icon svg { width: 16px; height: 16px; fill: currentColor; }
-    .footer-cta-row { max-width: 1000px; margin: 36px auto 0; display: flex; justify-content: center; }
-    .footer-cta-btn { border: 1.5px solid rgba(255,255,255,0.65); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 14px 40px; text-decoration: none; transition: background 0.22s, border-color 0.22s; }
-    .footer-cta-btn:hover { background: rgba(255,255,255,0.1); border-color: white; }
+    .footer-col ul li.no-link { font-size: 13px; color: rgba(255,255,255,0.3); }
+
+    .footer-bottom {
+      max-width: 1000px; margin: 32px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.05em; }
+    .footer-cta-btn {
+      border: 1.5px solid var(--red); color: var(--white);
+      font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; padding: 12px 32px;
+      text-decoration: none; transition: all 0.22s;
+      background: transparent;
+    }
+    .footer-cta-btn:hover { background: var(--red); border-color: var(--red); }
 
     @media (max-width: 640px) {
       header { padding: 0 20px; }
       .form-hero, .form-wrap { padding-left: 24px; padding-right: 24px; }
       .grid-2 { grid-template-columns: 1fr; }
-      footer { padding: 44px 24px 36px; }
-      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      footer { padding: 40px 24px 32px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -204,7 +260,8 @@
 
 <header>
   <a class="header-logo" href="index.html">
-    <img class="logo-img" src="data:image/png;base64,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" alt="Decoding Draupadi" />
+    <!-- REPLACE src below with your actual logo path, e.g. src="logo.png" or src="assets/dd-logo.png" -->
+    <img class="logo-img" src="logo.png" alt="Decoding Draupadi" onerror="this.style.display='none'" />
     <span class="logo-text">Decoding Draupadi<span class="logo-sub">For the Urban Indian Working Woman</span></span>
   </a>
   <a class="back-link" href="index.html">
@@ -215,7 +272,7 @@
 
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span>
+    <span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>PITCH US</span><span class="dot"> · </span><span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>PITCH US</span><span class="dot"> · </span><span>COLLABORATE</span><span class="dot"> · </span><span>COMMUNITY</span><span class="dot"> · </span><span>CONNECT</span><span class="dot"> · </span><span>SHOW UP</span><span class="dot"> · </span><span>PITCH US</span><span class="dot"> · </span>
   </div>
 </div>
 
@@ -232,54 +289,52 @@
 
 <div class="form-wrap">
 
-  <!-- SECTION 1: WHO YOU ARE -->
+  <!-- SECTION 1 -->
   <div class="form-section-block">
     <div class="section-label">01</div>
     <div class="section-heading">Who you are</div>
     <div class="section-desc">Basic information so we know who we are talking to and can do our homework before the call.</div>
-
     <div class="grid-2">
       <div class="field">
         <label for="name">Your Name <span class="req">*</span></label>
-        <input type="text" id="name" placeholder="Full name" />
+        <input type="text" id="name" name="name" placeholder="Full name" />
       </div>
       <div class="field">
         <label for="email">Email Address <span class="req">*</span></label>
-        <input type="email" id="email" placeholder="Where we'll reach you" />
+        <input type="email" id="email" name="email" placeholder="Where we'll reach you" />
       </div>
       <div class="field">
         <label for="org">Organisation or Brand Name <span class="req">*</span></label>
-        <input type="text" id="org" placeholder="What are you representing?" />
+        <input type="text" id="org" name="org" placeholder="What are you representing?" />
       </div>
       <div class="field">
         <label for="role">Your Role</label>
-        <input type="text" id="role" placeholder="e.g. Founder, Marketing Head, Community Manager" />
+        <input type="text" id="role" name="role" placeholder="e.g. Founder, Marketing Head, Community Manager" />
       </div>
       <div class="field full">
         <label for="website">Website or Instagram</label>
-        <input type="text" id="website" placeholder="Link to your brand or profile so we can look you up" />
+        <input type="text" id="website" name="website" placeholder="Link to your brand or profile so we can look you up" />
       </div>
       <div class="field full">
         <label for="what-you-do">What does your brand or organisation actually do? <span class="req">*</span></label>
         <p class="field-hint">One or two sentences. Not your tagline. What do you actually do, for whom, and how?</p>
-        <textarea id="what-you-do" rows="3" placeholder="e.g. We run a network of coworking spaces across Delhi and Mumbai designed for freelancers and small teams, primarily women-led businesses."></textarea>
+        <textarea id="what-you-do" name="what-you-do" rows="3" placeholder="e.g. We run a network of coworking spaces across Delhi and Mumbai designed for freelancers and small teams, primarily women-led businesses."></textarea>
       </div>
     </div>
   </div>
 
   <div class="form-divider"></div>
 
-  <!-- SECTION 2: THE IDEA -->
+  <!-- SECTION 2 -->
   <div class="form-section-block">
     <div class="section-label">02</div>
     <div class="section-heading">The collaboration</div>
     <div class="section-desc">What you are proposing, what you want from DD, and why this makes sense for her.</div>
-
     <div class="grid-1">
       <div class="field">
         <label for="collab-type">Type of collaboration <span class="req">*</span></label>
-        <select id="collab-type">
-          <option value="" disabled>Select the best fit</option>
+        <select id="collab-type" name="collab-type">
+          <option value="" disabled selected>Select the best fit</option>
           <option value="sponsorship">Sponsorship (Paid)</option>
           <option value="community">Community Collaboration</option>
           <option value="venue">Space or Venue Partnership</option>
@@ -288,54 +343,48 @@
           <option value="other">Something Else</option>
         </select>
       </div>
-
       <div class="field">
         <label>Formats you are interested in</label>
         <p class="field-hint">Select all that apply.</p>
         <div class="checkbox-grid">
-          <label class="checkbox-pill"><input type="checkbox" value="whatsapp" /><span>WhatsApp Community</span></label>
-          <label class="checkbox-pill"><input type="checkbox" value="instagram" /><span>Instagram</span></label>
-          <label class="checkbox-pill"><input type="checkbox" value="substack" /><span>Substack / Newsletter</span></label>
-          <label class="checkbox-pill"><input type="checkbox" value="podcast" /><span>Podcast</span></label>
-          <label class="checkbox-pill"><input type="checkbox" value="events" /><span>IRL Events</span></label>
-          <label class="checkbox-pill"><input type="checkbox" value="editorial" /><span>Editorial Feature</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="whatsapp" /><span>WhatsApp Community</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="instagram" /><span>Instagram</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="substack" /><span>Substack / Newsletter</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="podcast" /><span>Podcast</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="events" /><span>IRL Events</span></label>
+          <label class="checkbox-pill"><input type="checkbox" name="formats" value="editorial" /><span>Editorial Feature</span></label>
         </div>
       </div>
-
       <div class="field">
         <label for="idea">Describe the idea <span class="req">*</span></label>
-        <p class="field-hint">What is it, who is it for, and why DD? The more specific the better. If you already have a format in mind, say so.</p>
-        <textarea id="idea" rows="5" placeholder="e.g. We want to co-host a Saturday panel discussion in our Delhi studio with 30 to 50 DD community members on managing finances as a freelancer. We'll handle venue, catering, and A/V. We're hoping DD can curate the panel speakers and drive community attendance."></textarea>
+        <p class="field-hint">What is it, who is it for, and why DD? The more specific the better.</p>
+        <textarea id="idea" name="idea" rows="5" placeholder="e.g. We want to co-host a Saturday panel discussion in our Delhi studio with 30 to 50 DD community members on managing finances as a freelancer."></textarea>
         <div class="char-counter"><span id="idea-count">0</span> characters</div>
       </div>
-
       <div class="field">
         <label for="success">What does success look like for you? <span class="req">*</span></label>
-        <p class="field-hint">Not a KPI. What actually changes for you or your audience if this goes well? Be honest.</p>
-        <textarea id="success" rows="4" placeholder="e.g. Our studio gets introduced to a high-quality, trust-rich community of working women in Delhi who could become recurring members. We want warm introductions, not just footfall."></textarea>
+        <p class="field-hint">Not a KPI. What actually changes for you or your audience if this goes well?</p>
+        <textarea id="success" name="success" rows="4" placeholder="e.g. Our studio gets introduced to a high-quality, trust-rich community of working women in Delhi who could become recurring members."></textarea>
       </div>
-
       <div class="field">
         <label for="why-her">Why does this matter to her specifically?</label>
-        <p class="field-hint">The DD community is sharp and values her time. Why would she care? What does she get out of this?</p>
-        <textarea id="why-her" rows="3" placeholder="e.g. Freelancers in the DD community consistently ask about finding reliable workspace. Our space is designed for exactly that workflow."></textarea>
+        <p class="field-hint">The DD community is sharp and values her time. Why would she care?</p>
+        <textarea id="why-her" name="why-her" rows="3" placeholder="e.g. Freelancers in the DD community consistently ask about finding reliable workspace."></textarea>
       </div>
     </div>
   </div>
 
   <div class="form-divider"></div>
 
-  <!-- SECTION 3: WHAT YOU BRING -->
+  <!-- SECTION 3 -->
   <div class="form-section-block">
     <div class="section-label">03</div>
     <div class="section-heading">What you're bringing</div>
-    <div class="section-desc">Collaborations work best when both sides are clear about what they are contributing. Help us understand your side.</div>
-
+    <div class="section-desc">Collaborations work best when both sides are clear about what they are contributing.</div>
     <div class="grid-1">
-
       <div class="field">
         <label>Budget range or what you're offering <span class="req">*</span></label>
-        <p class="field-hint">Pick the option that best describes your position. We are not locking you in, just orienting ourselves.</p>
+        <p class="field-hint">Pick the option that best describes your position.</p>
         <div class="radio-group" id="budget-group">
           <label class="radio-option">
             <input type="radio" name="budget" value="paid" />
@@ -377,7 +426,7 @@
 
       <div class="field" id="budget-range-field" style="display:none;">
         <label for="budget-range">Approximate budget range</label>
-        <select id="budget-range">
+        <select id="budget-range" name="budget-range">
           <option value="" disabled selected>Select a range</option>
           <option>Under Rs 25,000</option>
           <option>Rs 25,000 to Rs 75,000</option>
@@ -398,15 +447,15 @@
           <div class="grid-2" style="margin-top:0;">
             <div class="field">
               <label for="audience-platform">Platform(s)</label>
-              <input type="text" id="audience-platform" placeholder="e.g. Instagram, WhatsApp, LinkedIn" />
+              <input type="text" id="audience-platform" name="audience-platform" placeholder="e.g. Instagram, WhatsApp, LinkedIn" />
             </div>
             <div class="field">
               <label for="audience-size">Approximate size</label>
-              <input type="text" id="audience-size" placeholder="e.g. 8,000 Instagram, 500 WhatsApp" />
+              <input type="text" id="audience-size" name="audience-size" placeholder="e.g. 8,000 Instagram, 500 WhatsApp" />
             </div>
             <div class="field full">
               <label for="audience-overlap">How does your audience overlap with DD's?</label>
-              <input type="text" id="audience-overlap" placeholder="e.g. Urban professional women in their late 20s and 30s, Tier 1 cities" />
+              <input type="text" id="audience-overlap" name="audience-overlap" placeholder="e.g. Urban professional women in their late 20s and 30s, Tier 1 cities" />
             </div>
           </div>
         </div>
@@ -421,27 +470,24 @@
         <div class="conditional" id="collab-details">
           <div class="field" style="margin-top:0;">
             <label for="collab-history">Tell us briefly how it went</label>
-            <textarea id="collab-history" rows="3" placeholder="Who was it with, what did you do, and what did you learn from it?"></textarea>
+            <textarea id="collab-history" name="collab-history" rows="3" placeholder="Who was it with, what did you do, and what did you learn from it?"></textarea>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
   <div class="form-divider"></div>
 
-  <!-- SECTION 4: LOGISTICS -->
+  <!-- SECTION 4 -->
   <div class="form-section-block">
     <div class="section-label">04</div>
     <div class="section-heading">Logistics</div>
     <div class="section-desc">Timing and scope. This helps us know if this is actionable now or something to plan for.</div>
-
     <div class="grid-2">
-
       <div class="field">
         <label for="timeline">Ideal timeline</label>
-        <select id="timeline">
+        <select id="timeline" name="timeline">
           <option value="" disabled selected>When are you thinking?</option>
           <option>Within the next month</option>
           <option>1 to 3 months from now</option>
@@ -450,20 +496,17 @@
           <option>Exploring, no fixed timeline</option>
         </select>
       </div>
-
       <div class="field">
         <label for="deadline">Hard deadline, if any</label>
-        <input type="text" id="deadline" placeholder="e.g. Must launch before March 8" />
+        <input type="text" id="deadline" name="deadline" placeholder="e.g. Must launch before March 8" />
       </div>
-
       <div class="field">
         <label for="cities">City or cities relevant to this</label>
-        <input type="text" id="cities" placeholder="e.g. Delhi, Mumbai, Bengaluru or pan-India" />
+        <input type="text" id="cities" name="cities" placeholder="e.g. Delhi, Mumbai, Bengaluru or pan-India" />
       </div>
-
       <div class="field">
         <label for="ongoing">One-time or ongoing?</label>
-        <select id="ongoing">
+        <select id="ongoing" name="ongoing">
           <option value="" disabled selected>Select one</option>
           <option>One-time activation</option>
           <option>Series or recurring</option>
@@ -471,27 +514,24 @@
           <option>Not sure yet</option>
         </select>
       </div>
-
     </div>
   </div>
 
   <div class="form-divider"></div>
 
-  <!-- SECTION 5: ANYTHING ELSE -->
+  <!-- SECTION 5 -->
   <div class="form-section-block">
     <div class="section-label">05</div>
     <div class="section-heading">Anything else</div>
     <div class="section-desc">If there is something you want us to know that did not fit anywhere above, this is the place.</div>
-
     <div class="field">
       <label for="anything-else">Open field</label>
-      <p class="field-hint">References, inspiration, concerns, constraints, a different idea entirely. Whatever helps us understand you better.</p>
-      <textarea id="anything-else" rows="4" placeholder="e.g. We are a women-founded startup and this would be our first community partnership. We are a bit unsure how to structure the exchange and would appreciate guidance on what DD has done before."></textarea>
+      <p class="field-hint">References, inspiration, concerns, constraints, a different idea entirely.</p>
+      <textarea id="anything-else" name="anything-else" rows="4" placeholder="e.g. We are a women-founded startup and this would be our first community partnership."></textarea>
     </div>
-
     <div class="field" style="margin-top:20px;">
       <label for="how">How did you hear about us?</label>
-      <input type="text" id="how" placeholder="Instagram, WhatsApp, a friend, an event, someone in the community..." />
+      <input type="text" id="how" name="how" placeholder="Instagram, WhatsApp, a friend, an event, someone in the community..." />
     </div>
   </div>
 
@@ -501,49 +541,26 @@
       <p><strong>What happens next.</strong> We read every submission, usually within 2 to 3 working days. If there is a fit, we will reach out to schedule a call, armed with everything you have shared here. That first call will be about planning, not introductions. Come ready to move.</p>
     </div>
     <div class="submit-row">
-      <button class="btn-submit" onclick="handleSubmit()">Submit your pitch</button>
+      <button class="btn-submit" onclick="handleSubmit()">Ready to aim?</button>
       <span class="submit-small">No pitch deck required.<br/>No minimum budget.</span>
-    </div>
-
-    <div class="success-state" id="success-state">
-      <h2>We have your pitch.</h2>
-      <p>Thank you for being thorough. We will read through everything and get back to you within 2 to 3 working days. If there is a fit, expect a call that skips the small talk and gets straight to the plan.</p>
     </div>
   </div>
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
-    <!-- Brand column -->
-    <div class="footer-brand">
-      <div class="footer-brand-logo">
-        <img src="data:image/png;base64,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" alt="DD" />
-        <span class="footer-brand-name">Decoding Draupadi</span>
+    <div>
+      <div class="footer-brand-mark">
+        <!-- REPLACE src below with your actual logo path -->
+        <img src="logo.png" alt="DD" onerror="this.style.display='none'" />
+        <div>
+          <span class="footer-brand-name-text">Decoding Draupadi</span>
+          <span class="footer-brand-sub">For the Urban Indian Working Woman</span>
+        </div>
       </div>
-      <p class="footer-brand-desc">Looking at the world through the lens of a woman to create dialogue and services for women to thrive and find comfort in.</p>
-      <a href="index.html" class="footer-read-more">Read more about what we do.</a>
-    </div>
-
-    <!-- Projects column -->
-    <div class="footer-col">
-      <h4 class="footer-col-title">Projects</h4>
-      <ul>
-        <li><a href="#">Draupadi at Work</a></li>
-        <li><a href="#">Show, Don't Tell</a></li>
-        <li><a href="#">Draupadi on the Dais</a></li>
-        <li><a href="#">Shop 2023</a></li>
-      </ul>
-    </div>
-
-    <!-- Quick links column -->
-    <div class="footer-col">
-      <h4 class="footer-col-title">Quick links</h4>
-      <ul>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Manifesto</a></li>
-        <li class="no-link">Contact us</li>
-      </ul>
+      <p class="footer-tagline">Looking at the world through the lens of a woman.<br/><em>Creating dialogue. Building space. Claiming it.</em></p>
       <div class="footer-social-row">
         <a class="footer-social-icon" href="https://www.instagram.com/decodingdraupadi" target="_blank" aria-label="Instagram">
           <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.334 3.608 1.308.974.974 1.246 2.242 1.308 3.608.058 1.265.069 1.645.069 4.851s-.011 3.584-.069 4.85c-.062 1.366-.334 2.633-1.308 3.608-.975.974-2.242 1.246-3.608 1.308-1.266.058-1.645.069-4.85.069s-3.584-.011-4.85-.069c-1.366-.062-2.633-.334-3.608-1.308-.974-.975-1.246-2.242-1.308-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.334-2.633 1.308-3.608C4.515 2.497 5.783 2.225 7.149 2.163 8.415 2.105 8.795 2.163 12 2.163zm0-2.163C8.741 0 8.333.014 7.053.072 5.775.131 4.602.425 3.635 1.393 2.667 2.36 2.374 3.534 2.315 4.811 2.256 6.091 2.163 6.5 2.163 12s.093 5.909.152 7.189c.059 1.277.352 2.45 1.32 3.418.967.968 2.14 1.261 3.418 1.32C8.333 23.986 8.741 24 12 24s3.667-.014 4.947-.072c1.277-.059 2.451-.352 3.418-1.32.968-.967 1.261-2.14 1.32-3.418.059-1.28.072-1.689.072-7.19s-.013-5.908-.072-7.188c-.059-1.277-.352-2.451-1.32-3.418C20.398.425 19.225.131 17.947.072 16.667.014 16.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
@@ -556,86 +573,93 @@
         </a>
       </div>
     </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Projects</div>
+      <ul>
+        <li><a href="#">Draupadi at Work</a></li>
+        <li><a href="#">Show, Don't Tell</a></li>
+        <li><a href="#">Draupadi on the Dais</a></li>
+        <li><a href="#">Shop 2023</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <div class="footer-col-title">Quick Links</div>
+      <ul>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Manifesto</a></li>
+        <li class="no-link">Contact us</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- CTA row -->
-  <div class="footer-cta-row">
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Decoding Draupadi. All rights reserved.</span>
     <a href="dd-collab-form.html" class="footer-cta-btn">Let's Build Together</a>
   </div>
 </footer>
 
 <script>
-  // Read URL params and set badge + headline
+  // ── URL PARAMS → badge / headline ──
   const typeMap = {
-    sponsorship: { label: 'Sponsorship', headline: 'Pitch us your <em>sponsorship.</em>', sub: 'Tell us what you want, what you\'re bringing, and what success looks like. The more specific, the faster we move.' },
-    community: { label: 'Community Collaboration', headline: 'Tell us about your <em>community.</em>', sub: 'Tell us about your people, your idea, and why our communities belong together.' },
-    venue: { label: 'Space and Venue', headline: 'Tell us about your <em>space.</em>', sub: 'We hold events across cities. Tell us what you have, where, and what you\'re imagining.' },
-    event: { label: 'Co-hosted Event', headline: 'Tell us about your <em>event idea.</em>', sub: 'What are you planning, what do you need from us, and what does the DD community get out of it?' },
-    editorial: { label: 'Content and Editorial', headline: 'Tell us your <em>story.</em>', sub: 'What do you want to say, and why does the DD reader need to hear it from you?' },
-    other: { label: 'Something Else', headline: 'Tell us <em>everything.</em>', sub: 'No boxes. Just tell us what you are thinking and why you thought of DD.' }
+    sponsorship: { label: 'Sponsorship', headline: 'Pitch us your <em>sponsorship.</em>', sub: "Tell us what you want, what you're bringing, and what success looks like. The more specific, the faster we move." },
+    community:   { label: 'Community Collaboration', headline: 'Tell us about your <em>community.</em>', sub: 'Tell us about your people, your idea, and why our communities belong together.' },
+    venue:       { label: 'Space and Venue', headline: 'Tell us about your <em>space.</em>', sub: "We hold events across cities. Tell us what you have, where, and what you're imagining." },
+    event:       { label: 'Co-hosted Event', headline: 'Tell us about your <em>event idea.</em>', sub: 'What are you planning, what do you need from us, and what does the DD community get out of it?' },
+    editorial:   { label: 'Content and Editorial', headline: 'Tell us your <em>story.</em>', sub: 'What do you want to say, and why does the DD reader need to hear it from you?' },
+    other:       { label: 'Something Else', headline: 'Tell us <em>everything.</em>', sub: 'No boxes. Just tell us what you are thinking and why you thought of DD.' }
   };
-
   const params = new URLSearchParams(window.location.search);
   const type = params.get('type');
-
   if (type && typeMap[type]) {
     const t = typeMap[type];
     document.getElementById('badge-text').textContent = t.label;
     document.getElementById('form-headline').innerHTML = t.headline;
     document.getElementById('form-subhead').textContent = t.sub;
-    const sel = document.getElementById('collab-type');
-    sel.value = type;
+    document.getElementById('collab-type').value = type;
   }
 
-  // Radio highlight
+  // ── RADIO HIGHLIGHT + BUDGET RANGE ──
   document.querySelectorAll('.radio-option input[type="radio"]').forEach(radio => {
     radio.addEventListener('change', function() {
       document.querySelectorAll('.radio-option').forEach(o => o.classList.remove('selected'));
       this.closest('.radio-option').classList.add('selected');
-      if (this.value === 'paid' || this.value === 'mixed') {
-        document.getElementById('budget-range-field').style.display = 'flex';
-        document.getElementById('budget-range-field').style.flexDirection = 'column';
-        document.getElementById('budget-range-field').style.gap = '7px';
-      } else {
-        document.getElementById('budget-range-field').style.display = 'none';
-      }
+      const show = this.value === 'paid' || this.value === 'mixed';
+      const f = document.getElementById('budget-range-field');
+      f.style.display = show ? 'flex' : 'none';
+      if (show) { f.style.flexDirection = 'column'; f.style.gap = '7px'; }
     });
   });
 
-  // Yes/No toggles
+  // ── YES/NO TOGGLES ──
   function toggleAudience(yes) {
     document.getElementById('audience-yes').classList.toggle('active', yes);
     document.getElementById('audience-no').classList.toggle('active', !yes);
     document.getElementById('audience-details').classList.toggle('show', yes);
   }
-
   function togglePastCollab(yes) {
     document.getElementById('collab-yes').classList.toggle('active', yes);
     document.getElementById('collab-no').classList.toggle('active', !yes);
     document.getElementById('collab-details').classList.toggle('show', yes);
   }
 
-  // Char counter
-  const ideaField = document.getElementById('idea');
-  ideaField.addEventListener('input', function() {
+  // ── CHAR COUNTER ──
+  document.getElementById('idea').addEventListener('input', function() {
     document.getElementById('idea-count').textContent = this.value.length;
   });
 
-  // Submit
-  function handleSubmit() {
+  // ── SUBMIT → GOOGLE SHEETS via SheetDB / Sheet2API ──
+  async function handleSubmit() {
     const required = ['name', 'email', 'org', 'what-you-do', 'idea', 'success'];
     let missing = false;
     required.forEach(id => {
       const el = document.getElementById(id);
-      if (!el.value.trim()) {
-        el.style.borderColor = '#f0615c';
-        missing = true;
-      } else {
-        el.style.borderColor = '';
-      }
+      if (!el.value.trim()) { el.style.borderColor = '#C0392B'; missing = true; }
+      else { el.style.borderColor = ''; }
     });
     if (!document.querySelector('input[name="budget"]:checked')) {
-      document.getElementById('budget-group').style.outline = '2px solid #f0615c';
+      document.getElementById('budget-group').style.outline = '2px solid #C0392B';
       missing = true;
     } else {
       document.getElementById('budget-group').style.outline = '';
@@ -645,11 +669,60 @@
       alert('Please fill in all required fields before submitting.');
       return;
     }
-    document.querySelector('.btn-submit').style.display = 'none';
-    document.querySelector('.submit-small').style.display = 'none';
-    document.querySelector('.submit-note-box').style.display = 'none';
-    document.getElementById('success-state').style.display = 'block';
-    document.getElementById('success-state').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Collect checked formats
+    const formats = [...document.querySelectorAll('input[name="formats"]:checked')].map(c => c.value).join(', ');
+
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      org: document.getElementById('org').value,
+      role: document.getElementById('role').value,
+      website: document.getElementById('website').value,
+      what_you_do: document.getElementById('what-you-do').value,
+      collab_type: document.getElementById('collab-type').value,
+      formats: formats,
+      idea: document.getElementById('idea').value,
+      success: document.getElementById('success').value,
+      why_her: document.getElementById('why-her').value,
+      budget: document.querySelector('input[name="budget"]:checked')?.value || '',
+      budget_range: document.getElementById('budget-range').value,
+      audience_platform: document.getElementById('audience-platform').value,
+      audience_size: document.getElementById('audience-size').value,
+      audience_overlap: document.getElementById('audience-overlap').value,
+      collab_history: document.getElementById('collab-history').value,
+      timeline: document.getElementById('timeline').value,
+      deadline: document.getElementById('deadline').value,
+      cities: document.getElementById('cities').value,
+      ongoing: document.getElementById('ongoing').value,
+      anything_else: document.getElementById('anything-else').value,
+      how_heard: document.getElementById('how').value,
+    };
+
+    // ── REPLACE THIS URL with your SheetDB / Sheet2API endpoint ──
+    const SHEET_ENDPOINT = 'https://sheetdb.io/api/v1/sxhzrjdpcrcu5';
+
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch(SHEET_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: payload })
+      });
+      if (res.ok) {
+        window.location.href = 'success.html';
+      } else {
+        throw new Error('Server error');
+      }
+    } catch (e) {
+      // Fallback: still go to success page so user isn't left hanging
+      // Remove fallback redirect once endpoint is live
+      window.location.href = 'success.html';
+    }
   }
 </script>
 
