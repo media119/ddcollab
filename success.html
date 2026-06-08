@@ -7,12 +7,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --orange: #f4845f;
-      --red: #C0392B;
-      --pink: #e8799a;
-      --pink-light: #fde4f0;
+      --red: #f0615c;
+      --pink: #ffacec;
       --blush: #fce8ec;
-      --cream: #fff8f3;
+      --cream: #faf8f4;
       --white: #ffffff;
       --text: #2a1a14;
       --muted: #7a4a3a;
@@ -31,15 +29,15 @@
       background: var(--white); border-bottom: 2px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       padding: 0 44px; height: 68px;
-      box-shadow: 0 2px 18px rgba(244,132,95,0.08);
+      box-shadow: 0 2px 18px rgba(240,97,92,0.08);
     }
     .header-logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
     .logo-img { width: 36px; height: 36px; object-fit: contain; }
-    .logo-text { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--orange); letter-spacing: 0.02em; line-height: 1; }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--red); letter-spacing: 0.02em; line-height: 1; }
     .logo-sub { display: block; font-family: 'Montserrat', sans-serif; font-size: 7.5px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
 
     /* ── MARQUEE ── */
-    .marquee-wrap { background: var(--orange); overflow: hidden; white-space: nowrap; padding: 10px 0; }
+    .marquee-wrap { background: var(--red); overflow: hidden; white-space: nowrap; padding: 10px 0; }
     .marquee-track { display: inline-block; animation: marquee 28s linear infinite; }
     .marquee-track span { font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: var(--white); padding: 0 26px; }
     .marquee-track span.dot { color: rgba(255,255,255,0.35); padding: 0; }
@@ -68,7 +66,7 @@
       content: '';
       position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
       width: 120px; height: 120px; border-radius: 50%;
-      border: 1px solid rgba(244,132,95,0.2);
+      border: 1px solid rgba(240,97,92,0.2);
       animation: ringPulse 3s ease-in-out 0.4s infinite;
     }
     @keyframes ringPulse {
@@ -78,7 +76,7 @@
 
     .icon-wrap {
       width: 72px; height: 72px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--red), var(--orange));
+      background: linear-gradient(135deg, var(--red), var(--red));
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 32px; position: relative; z-index: 1;
       box-shadow: 0 8px 32px rgba(192,57,43,0.25);
@@ -102,7 +100,7 @@
       color: var(--text); line-height: 1.1; margin-bottom: 10px;
       animation: fadeUp 0.5s 0.3s both;
     }
-    h1 em { font-style: italic; color: var(--orange); }
+    h1 em { font-style: italic; color: var(--red); }
 
     .subhead {
       font-family: 'Playfair Display', serif; font-style: italic;
@@ -118,7 +116,7 @@
 
     .divider-line {
       width: 48px; height: 2px;
-      background: linear-gradient(90deg, var(--red), var(--orange), var(--pink));
+      background: linear-gradient(90deg, var(--red), var(--red), var(--pink));
       margin: 0 auto 36px;
       animation: fadeUp 0.5s 0.5s both;
     }
@@ -141,7 +139,7 @@
     }
     .step-num {
       font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700;
-      color: var(--orange); flex-shrink: 0; line-height: 1.3;
+      color: var(--red); flex-shrink: 0; line-height: 1.3;
     }
 
     .cta-row {
@@ -155,7 +153,7 @@
       text-transform: uppercase; cursor: pointer; text-decoration: none;
       transition: background 0.2s, transform 0.15s; display: inline-block;
     }
-    .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
+    .btn-primary:hover { background: #c94540; transform: translateY(-2px); }
     .btn-ghost {
       background: transparent; color: var(--muted);
       border: 1.5px solid var(--border); padding: 16px 40px;
@@ -163,7 +161,7 @@
       letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer;
       text-decoration: none; transition: all 0.2s; display: inline-block;
     }
-    .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(16px); }
@@ -171,26 +169,26 @@
     }
 
     /* ── FOOTER ── */
-    footer { background: var(--text); padding: 56px 44px 40px; border-top: 3px solid var(--orange); }
+    footer { background: var(--text); padding: 56px 44px 40px; border-top: 3px solid var(--red); }
     .footer-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); }
     .footer-brand-mark { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
     .footer-brand-mark img { width: 38px; height: 38px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9; }
     .footer-brand-name-text { font-family: 'Playfair Display', serif; font-size: 16px; color: rgba(255,255,255,0.95); letter-spacing: 0.01em; }
-    .footer-brand-sub { display: block; font-family: 'Montserrat', sans-serif; font-size: 7px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-top: 3px; }
+    .footer-brand-sub { display: block; font-family: 'Montserrat', sans-serif; font-size: 7px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-top: 3px; }
     .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
     .footer-tagline em { color: var(--pink); font-style: italic; }
     .footer-social-row { display: flex; gap: 9px; }
     .footer-social-icon { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s; }
-    .footer-social-icon:hover { border-color: var(--orange); color: var(--orange); background: rgba(244,132,95,0.08); }
+    .footer-social-icon:hover { border-color: var(--red); color: var(--red); background: rgba(240,97,92,0.08); }
     .footer-social-icon svg { width: 14px; height: 14px; fill: currentColor; }
-    .footer-col-title { font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--orange); margin-bottom: 18px; }
+    .footer-col-title { font-size: 9px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
     .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; font-weight: 400; letter-spacing: 0.02em; }
     .footer-col ul li a:hover { color: var(--white); }
     .footer-bottom { max-width: 1000px; margin: 32px auto 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
     .footer-copy { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 300; letter-spacing: 0.05em; }
-    .footer-cta-btn { border: 1.5px solid var(--orange); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 12px 32px; text-decoration: none; transition: all 0.22s; background: transparent; }
-    .footer-cta-btn:hover { background: var(--orange); border-color: var(--orange); }
+    .footer-cta-btn { border: 1.5px solid var(--red); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; padding: 12px 32px; text-decoration: none; transition: all 0.22s; background: transparent; }
+    .footer-cta-btn:hover { background: var(--red); border-color: var(--red); }
 
     @media (max-width: 600px) {
       main { padding: 52px 24px; }
